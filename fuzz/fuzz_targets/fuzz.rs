@@ -1,8 +1,7 @@
 #![no_main]
 use libfuzzer_sys::fuzz_target;
-use bstr::BStr;
+use bstr::decode_utf8;
 
 fuzz_target!(|data: &[u8]| {
-    let a = BStr::new(data);
-    a.replace("a", "b");
+    let (_, _) = decode_utf8(data);
 });
