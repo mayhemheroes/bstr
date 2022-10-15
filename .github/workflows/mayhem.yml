@@ -7,9 +7,9 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  DECODE_MAYHEMFILE: mayhem/fuzz.mayhemfile
-  DECODE_LAST_MAYHEMFILE: mayhem/fuzz.mayhemfile
-  NEW_MAYHEMFILE: mayhem/fuzz.mayhemfile
+  DECODE_MAYHEMFILE: mayhem/decode.mayhemfile
+  DECODE_LAST_MAYHEMFILE: mayhem/decode_last.mayhemfile
+  NEW_MAYHEMFILE: mayhem/new.mayhemfile
 
 jobs:
   build:
