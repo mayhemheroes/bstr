@@ -1,0 +1,5 @@
+project: bstr
+target: bstr-decode
+
+cmds:
+  - cmd: /fuzzers/fuzz_decode

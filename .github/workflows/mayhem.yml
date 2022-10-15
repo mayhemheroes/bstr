@@ -7,7 +7,9 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  FUZZ_MAYHEMFILE: mayhem/fuzz.mayhemfile
+  DECODE_MAYHEMFILE: mayhem/fuzz.mayhemfile
+  DECODE_LAST_MAYHEMFILE: mayhem/fuzz.mayhemfile
+  NEW_MAYHEMFILE: mayhem/fuzz.mayhemfile
 
 jobs:
   build:
@@ -47,12 +49,26 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-      - name: Start analysis for parse_module
+      - name: Start analysis for decode_last_utf8
         uses: ForAllSecure/mcode-action@v1
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.FUZZ_MAYHEMFILE }} --duration 1200
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.DECODE_LAST_MAYHEMFILE }} --duration 300
           sarif-output: sarif
+
+      - name: Start analysis for decode_utf8
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.DECODE_MAYHEMFILE }} --duration 300
+          sarif-output: sarif
+
+      - name: Start analysis for new
+        uses: ForAllSecure/mcode-action@v1
+        with:
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
+          args: --image ${{ steps.meta.outputs.tags }} --file ${{ env.NEW_MAYHEMFILE }} --duration 300
+          sarif-output: sarif        
 
       - name: Upload SARIF file(s)
         uses: github/codeql-action/upload-sarif@v1

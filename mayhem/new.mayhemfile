@@ -2,4 +2,4 @@ project: bstr
 target: bstr-new
 
 cmds:
-  - cmd: /fuzzers/fuzz_fuzz
+  - cmd: /fuzzers/fuzz_new
