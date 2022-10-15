@@ -18,7 +18,19 @@ path = ".."
 members = ["."]
 
 [[bin]]
-name = "fuzz_fuzz"
-path = "fuzz_targets/fuzz.rs"
+name = "fuzz_decode_last"
+path = "fuzz_targets/decode_last.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_decode"
+path = "fuzz_targets/decode.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_new"
+path = "fuzz_targets/new.rs"
 test = false
 doc = false
