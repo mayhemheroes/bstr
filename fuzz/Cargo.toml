@@ -1,0 +1,34 @@
+[package]
+name = "bstr-fuzz"
+version = "0.0.1"
+publish = false
+edition = "2021"
+
+[package.metadata]
+cargo-fuzz = true
+
+[dependencies]
+libfuzzer-sys = "0.4"
+
+[dependencies.bstr]
+path = ".."
+
+[[bin]]
+name = "fuzz_decode"
+path = "src/fuzz_decode.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_decode_last"
+path = "src/fuzz_decode_last.rs"
+test = false
+doc = false
+
+[[bin]]
+name = "fuzz_new"
+path = "src/fuzz_new.rs"
+test = false
+doc = false
+
+[workspace]
